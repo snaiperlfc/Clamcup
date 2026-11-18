@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.2
+
+- The panel shrinks back when its content gets shorter. Before, an empty band stayed at the top after the helper card disappeared, for example right after installing the helper.
+
 ## 1.0.1
 
 - The helper installer writes only into a root-owned folder. If something other than a plain file sits in place of the mode file, the installer removes it instead of following it.
