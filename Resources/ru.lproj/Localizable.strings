@@ -1,0 +1,54 @@
+/* Шапка панели */
+"Checking…" = "Проверка…";
+"Stays awake, even with the lid closed" = "Не засыпает, даже с закрытой крышкой";
+"On battery: normal sleep" = "На батарее, сон как обычно";
+"Off: normal sleep" = "Выключено, сон как обычно";
+"Applying…" = "Применяется…";
+"Helper required" = "Нужна служба";
+"Helper isn't running" = "Служба не запущена";
+
+/* Карточка службы */
+"Install the helper" = "Установите службу";
+"Update the helper" = "Обновите службу";
+"The helper isn't running" = "Служба не запущена";
+"Only a system helper can turn off sleep. macOS will ask for an administrator password." = "Отключать сон может только системная служба. macOS попросит пароль администратора.";
+"This version of Clamcup comes with a newer helper." = "В этой версии Clamcup служба новее установленной.";
+"Reinstalling it usually helps." = "Обычно помогает переустановка.";
+"Install Helper…" = "Установить службу…";
+"Update Helper…" = "Обновить службу…";
+"Reinstall Helper…" = "Переустановить службу…";
+
+/* Главный переключатель */
+"Stay awake on power" = "Не засыпать на зарядке";
+"Even with the lid closed. On battery your Mac sleeps as usual." = "Даже с закрытой крышкой. На батарее Mac засыпает как обычно.";
+
+/* Состояние */
+"Power" = "Питание";
+"Adapter" = "Сеть";
+"Battery" = "Батарея";
+"Lid" = "Крышка";
+"Open" = "Открыта";
+"Closed" = "Закрыта";
+"Sleep" = "Сон";
+"Turned off" = "Отключён";
+"Normal" = "Как обычно";
+
+/* Нижняя часть панели */
+"Launch at login" = "Запускать при входе";
+"About Clamcup" = "О программе";
+"Open Log" = "Открыть журнал";
+"Uninstall Helper…" = "Удалить службу…";
+"More" = "Ещё";
+"Quit" = "Выйти";
+
+/* Ошибки и запросы пароля */
+"Couldn't change the mode" = "Не удалось сменить режим";
+"Couldn't change the login item" = "Не удалось изменить автозапуск";
+"Couldn't install the helper" = "Не удалось установить службу";
+"Couldn't remove the helper" = "Не удалось удалить службу";
+"Clamcup will install a helper that keeps your Mac awake on power." = "Clamcup установит службу, которая не даёт Mac засыпать на зарядке.";
+"Clamcup will remove its helper and restore normal sleep." = "Clamcup удалит свою службу и вернёт обычный сон.";
+
+/* О программе */
+"Keeps your Mac awake on power, even with the lid closed." = "Не даёт Mac засыпать на зарядке, даже с закрытой крышкой.";
+"Source code on GitHub" = "Исходный код на GitHub";
