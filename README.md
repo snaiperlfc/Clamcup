@@ -55,6 +55,14 @@ Files the helper installs:
 | `/Library/Application Support/Clamcup/` | mode file, installed version, PID |
 | `/var/log/clamcup.log` | log: each sleep switch and mode change |
 
+## Security
+
+The helper runs as root. Here is what it trusts:
+
+- It reads one file, the mode file, and takes only `off` from it. Anything else means `auto`.
+- Its binary, launchd job and folder belong to root. The installer refuses to write into the folder if it isn't a root-owned directory. If something other than a plain file sits in place of the mode file, the installer removes it instead of following it.
+- Releases aren't signed with an Apple Developer ID. The installer runs from the app in Applications, and your user account can change that app. Software already running under your account could swap the helper before you enter the administrator password. Only a Developer ID signature closes this.
+
 ## Be careful
 
 With Clamcup on, a Mac on a charger keeps running with the lid closed. If you put it in a bag while it's still plugged in, it won't sleep. Unplug it or turn the switch off first.
