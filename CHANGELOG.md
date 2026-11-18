@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1
+
+- The helper installer writes only into a root-owned folder. If something other than a plain file sits in place of the mode file, the installer removes it instead of following it.
+- The installer checks the version it is given.
+- README: a Security section.
+
 ## 1.0.0
 
 First public release.
