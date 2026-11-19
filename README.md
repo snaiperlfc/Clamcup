@@ -94,7 +94,7 @@ scripts/dmg.sh                # build/Clamcup-<version>.dmg
 
 To release: update `VERSION` and `CHANGELOG.md`, then push a `vX.Y.Z` tag. GitHub Actions runs the tests, builds the DMG and publishes the release.
 
-The helper has its own version in `HELPER_VERSION`. The app asks to update the helper, and so asks for the administrator password, only when that version differs from the installed one. If you change `Sources/ClamcupHelper`, `Sources/ClamcupCore` or `Resources/install-helper.sh`, set `HELPER_VERSION` to the new app version. `scripts/check-helper-version.sh` fails CI if you forget.
+The helper has its own version in `HELPER_VERSION`. The app asks to update the helper, and so asks for the administrator password, only when that version differs from the installed one. If you change `Sources/ClamcupHelper`, `Sources/ClamcupCore`, `Resources/install-helper.sh`, `Package.swift` or `scripts/bundle.sh`, set `HELPER_VERSION` to the same value as `VERSION`. `scripts/check-helper-version.sh` fails CI if you forget, or if the new value differs from `VERSION` or is lower than the previous one.
 
 ## License
 
