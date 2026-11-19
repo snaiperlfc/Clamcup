@@ -7,6 +7,8 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 VERSION="${VERSION:-$(tr -d '[:space:]' <VERSION)}"
+# Версия службы своя: см. HELPER_VERSION и scripts/check-helper-version.sh
+HELPER_VERSION="$(tr -d '[:space:]' <HELPER_VERSION)"
 BUILD_NUMBER="${BUILD_NUMBER:-$(git rev-list --count HEAD 2>/dev/null || echo 1)}"
 ARCHS=(--arch arm64 --arch x86_64)
 
@@ -21,6 +23,7 @@ cp "$BIN/Clamcup" "$BIN/ClamcupHelper" "$APP/Contents/MacOS/"
 cp Resources/Info.plist "$APP/Contents/Info.plist"
 plutil -replace CFBundleShortVersionString -string "$VERSION" "$APP/Contents/Info.plist"
 plutil -replace CFBundleVersion -string "$BUILD_NUMBER" "$APP/Contents/Info.plist"
+plutil -replace ClamcupHelperVersion -string "$HELPER_VERSION" "$APP/Contents/Info.plist"
 
 cp Resources/AppIcon.icns Resources/install-helper.sh Resources/uninstall-helper.sh "$APP/Contents/Resources/"
 chmod 755 "$APP/Contents/Resources/"*.sh
@@ -31,4 +34,4 @@ codesign --force --sign - --identifier io.github.snaiperlfc.Clamcup.helper "$APP
 codesign --force --sign - "$APP"
 codesign --verify --strict "$APP"
 
-echo "$APP $VERSION ($BUILD_NUMBER): $(lipo -archs "$APP/Contents/MacOS/Clamcup")"
+echo "$APP $VERSION ($BUILD_NUMBER), helper $HELPER_VERSION: $(lipo -archs "$APP/Contents/MacOS/Clamcup")"

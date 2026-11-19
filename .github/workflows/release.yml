@@ -24,6 +24,9 @@ jobs:
           fi
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
 
+      - name: Helper version bumped if the helper changed
+        run: scripts/check-helper-version.sh
+
       - name: Tests
         run: swift test
 
