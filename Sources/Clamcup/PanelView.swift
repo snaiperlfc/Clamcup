@@ -5,6 +5,7 @@ import SwiftUI
 /// Панель, которая открывается по щелчку на значок в строке меню.
 struct PanelView: View {
     let model: StatusModel
+    @State private var contentHeight: CGFloat = 0
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -37,7 +38,32 @@ struct PanelView: View {
         }
         .padding(16)
         .frame(width: 300)
+        .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { contentHeight = $0 }
+        .background(WindowHeightFitter(contentHeight: contentHeight))
         .onAppear { model.refresh() }
+    }
+}
+
+/// Окно MenuBarExtra растёт вместе с содержимым, но само не сжимается. Когда пропадает
+/// карточка службы, сверху оставалась пустая полоса. Подгоняем высоту окна под содержимое,
+/// верхний край остаётся на месте под строкой меню.
+private struct WindowHeightFitter: NSViewRepresentable {
+    let contentHeight: CGFloat
+
+    func makeNSView(context: Context) -> NSView { NSView() }
+
+    func updateNSView(_ view: NSView, context: Context) {
+        let height = contentHeight
+        // Меняем окно после текущего прохода раскладки SwiftUI, а не посреди него
+        Task { @MainActor [weak view] in
+            guard height > 0, let window = view?.window else { return }
+            var frame = window.frame
+            let delta = height - window.contentRect(forFrameRect: frame).height
+            guard abs(delta) > 0.5 else { return }
+            frame.origin.y -= delta
+            frame.size.height += delta
+            window.setFrame(frame, display: true)
+        }
     }
 }
 
