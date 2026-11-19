@@ -10,6 +10,11 @@ jobs:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Теги нужны проверке HELPER_VERSION
+          fetch-depth: 0
+      - name: Helper version bumped if the helper changed
+        run: scripts/check-helper-version.sh
       - name: Tests
         run: swift test
       - name: Helper live test

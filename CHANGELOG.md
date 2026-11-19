@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.3
+
+- Updating the app asks for the administrator password only when the helper itself changed. The helper has its own version in `HELPER_VERSION`, and CI fails if the helper changes without a new one. Updating from 1.0.1 or 1.0.2 needs no password.
+
 ## 1.0.2
 
 - The panel shrinks back when its content gets shorter. Before, an empty band stayed at the top after the helper card disappeared, for example right after installing the helper.

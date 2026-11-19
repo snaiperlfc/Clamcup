@@ -18,6 +18,8 @@
 	<string>0.0.0</string>
 	<key>CFBundleVersion</key>
 	<string>0</string>
+	<key>ClamcupHelperVersion</key>
+	<string>0</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleLocalizations</key>

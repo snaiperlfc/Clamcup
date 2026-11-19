@@ -41,7 +41,10 @@ final class StatusModel {
     private(set) var device: DeviceState
     private(set) var launchAtLogin: Bool
 
-    let appVersion: String
+    /// Версия службы, которая лежит в приложении. Своя, а не версия приложения:
+    /// меняется, только когда меняются служба или установщик, поэтому обычное
+    /// обновление приложения не просит пароль. Берётся из файла HELPER_VERSION при сборке
+    let helperVersion: String
 
     @ObservationIgnored private let isPreview: Bool
     @ObservationIgnored private var powerSource: CFRunLoopSource?
@@ -49,7 +52,7 @@ final class StatusModel {
     @ObservationIgnored private var refreshGeneration = 0
 
     init(preview: DeviceState? = nil, launchAtLogin: Bool = false) {
-        appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "0"
+        helperVersion = Bundle.main.object(forInfoDictionaryKey: "ClamcupHelperVersion") as? String ?? "0"
         isPreview = preview != nil
         device = preview ?? DeviceState(onAC: true, lidClosed: false, sleepDisabled: false, mode: .auto, helper: .checking)
         self.launchAtLogin = launchAtLogin
@@ -103,7 +106,7 @@ final class StatusModel {
         guard !isPreview else { return }
         refreshGeneration += 1
         let generation = refreshGeneration
-        let version = appVersion
+        let version = helperVersion
         Task {
             let state = await Task.detached { Self.readDeviceState(bundledVersion: version) }.value
             // Более свежий запрос уже в пути
@@ -203,7 +206,7 @@ final class StatusModel {
             return
         }
         runPrivileged(
-            ["/bin/bash", script.path, NSUserName(), appVersion],
+            ["/bin/bash", script.path, NSUserName(), helperVersion],
             prompt: String(localized: "Clamcup will install a helper that keeps your Mac awake on power."),
             failureTitle: String(localized: "Couldn't install the helper")
         )
