@@ -94,7 +94,7 @@ scripts/dmg.sh                # build/Clamcup-<версия>.dmg
 
 Выпуск релиза: обновите `VERSION` и `CHANGELOG.md`, затем запушьте тег `vX.Y.Z`. GitHub Actions прогонит тесты, соберёт DMG и опубликует релиз.
 
-У службы своя версия в `HELPER_VERSION`. Приложение предлагает обновить службу и спрашивает пароль администратора, только когда эта версия отличается от установленной. Если меняете `Sources/ClamcupHelper`, `Sources/ClamcupCore` или `Resources/install-helper.sh`, поставьте в `HELPER_VERSION` новую версию приложения. Если забудете, `scripts/check-helper-version.sh` уронит CI.
+У службы своя версия в `HELPER_VERSION`. Приложение предлагает обновить службу и спрашивает пароль администратора, только когда эта версия отличается от установленной. Если меняете `Sources/ClamcupHelper`, `Sources/ClamcupCore`, `Resources/install-helper.sh`, `Package.swift` или `scripts/bundle.sh`, поставьте в `HELPER_VERSION` то же значение, что в `VERSION`. `scripts/check-helper-version.sh` уронит CI, если вы забудете, если номер не совпадёт с `VERSION` или окажется меньше прежнего.
 
 ## Лицензия
 
